@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Махмудов Дилшод — Backend-разработчик</title>
+    <meta name="description" content="Backend-разработчик с опытом оптимизации серверной логики и API. Ищу возможности для профессионального роста в динамичной команде." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --bg: #0a192f;
+            /* Темный фон для техно-стиля */
+            --text: #ccd6f6;
+            /* Светлый текст */
+            --accent: #64ffda;
+            /* Циан-акцент */
+            --secondary-accent: #00ff85;
+            /* Зеленый акцент */
+            --gray: #8892b0;
+            /* Серый для второстепенного текста */
+            --light-gray: #112240;
+            /* Светлый серый для карточек */
+            --card-shadow: rgba(100, 255, 218, 0.1);
+            /* Тень с оттенком циана */
+        }
+        
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --text: #0a192f;
+            --accent: #00b894;
+            --secondary-accent: #00cec9;
+            --gray: #555555;
+            --light-gray: #f5f5f5;
+            --card-shadow: rgba(0, 184, 148, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+        
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        header {
+            padding: 100px 0 80px;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--light-gray), var(--bg));
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+            color: var(--accent);
+        }
+        
+        .title {
+            font-size: 1.8rem;
+            color: var(--secondary-accent);
+            margin-bottom: 24px;
+        }
+        
+        .bio {
+            max-width: 750px;
+            margin: 0 auto 40px;
+            font-size: 1.2rem;
+            color: var(--gray);
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            z-index: 1000;
+            transition: background 0.5s ease, border 0.5s ease;
+        }
+        
+        [data-theme="light"] nav {
+            border-bottom: 1px solid rgba(0, 184, 148, 0.1);
+        }
+        
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+        }
+        
+        .logo {
+            font-weight: 600;
+            font-size: 1.4rem;
+            color: var(--accent);
+        }
+        
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.6rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.2);
+        }
+        
+        .nav-links a {
+            margin-left: 32px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        section {
+            padding: 100px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease forwards 0.3s;
+        }
+        
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 48px;
+            text-align: center;
+            position: relative;
+            color: var(--accent);
+        }
+        
+        h2:after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent), var(--secondary-accent));
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+        }
+        
+        h2:hover:after {
+            width: 120px;
+        }
+        
+        .skills-grid,
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        
+        .card {
+            background: var(--light-gray);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
+            opacity: 0;
+            animation: fadeIn 1.2s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 16px 40px var(--card-shadow);
+            border: 1px solid var(--accent);
+        }
+        
+        .card h3 {
+            margin-bottom: 20px;
+            color: var(--secondary-accent);
+            font-size: 1.6rem;
+        }
+        
+        .meta {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 16px;
+            font-style: italic;
+        }
+        
+        ul {
+            padding-left: 24px;
+            list-style-type: none;
+        }
+        
+        ul li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+        
+        ul li:before {
+            content: '→';
+            color: var(--accent);
+            position: absolute;
+            left: -24px;
+            transition: color 0.3s ease;
+        }
+        
+        ul li:hover:before {
+            color: var(--secondary-accent);
+        }
+        
+        .contact-info {
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: var(--secondary-accent);
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            color: var(--gray);
+            border-top: 1px solid rgba(100, 255, 218, 0.1);
+            transition: border 0.5s ease;
+        }
+        
+        [data-theme="light"] footer {
+            border-top: 1px solid rgba(0, 184, 148, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            h2 {
+                font-size: 2.2rem;
+            }
+            nav .container {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .nav-links a {
+                margin: 0 20px;
+            }
+            .card {
+                padding: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body data-theme="dark">
+
+    <nav>
+        <div class="container">
+            <div class="logo">Дилшод Махмудов</div>
+            <div>
+                <button class="theme-toggle" aria-label="Переключить тему">☀️</button>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="container">
+            <!-- Замените на ссылку на ваше фото, например: https://i.imgur.com/ваш-id.jpg -->
+            <!-- <img src="your-photo.jpg" alt="Дилшод Махмудов" style="width:200px; height:200px; border-radius:50%; object-fit:cover; margin-bottom:32px; border:4px solid var(--accent); transition: border 0.3s ease;"> -->
+            <h1>Махмудов Дилшод</h1>
+            <div class="title">Backend-разработчик с фокусом на оптимизации и инновациях</div>
+            <p class="bio">
+                Амбициозный специалист в области backend-разработки, 19 лет. Обладаю практическим опытом в создании эффективных серверных решений, оптимизации баз данных и интеграции API. Стремлюсь к ролям, где могу внести вклад в проекты с использованием современных
+                технологий, демонстрируя навыки менторства и быструю адаптацию. Ищу позицию в инновационной команде с возможностью удаленной работы или гибкого графика для достижения выдающихся результатов.
+            </p>
+        </div>
+    </header>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Ключевые навыки и компетенции</h2>
+            <div class="skills-grid">
+                <div class="card">
+                    <h3>Backend-разработка</h3>
+                    <p>Проектирование и реализация масштабируемой серверной логики, включая разработку RESTful API и gRPC для высокопроизводительных систем.</p>
+                </div>
+                <div class="card">
+                    <h3>Работа с базами данных</h3>
+                    <p>Экспертиза в SQLite: создание, миграция и оптимизация баз данных с использованием ORM, что позволило сократить время запросов на 70% и миграций в 2–3 раза.</p>
+                </div>
+                <div class="card">
+                    <h3>Тестирование и отладка</h3>
+                    <p>Комплексное тестирование серверной части, интеграция и устранение ошибок, обеспечивая повышение скорости отклика систем до 80%.</p>
+                </div>
+                <div class="card">
+                    <h3>Лидерство и сотрудничество</h3>
+                    <p>Менторство стажеров, автоматизация процессов и командная работа в динамичных проектах с фокусом на результат и инновации.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" style="background: var(--light-gray);">
+        <div class="container">
+            <h2>Профессиональный опыт</h2>
+            <div class="experience-grid">
+                <div class="card">
+                    <h3>Tcell (Телекоммуникации, связь)</h3>
+                    <div class="meta">Май 2025 — январь 2026 (7 месяцев) | Ментор-разработчик / Стажировка</div>
+                    <ul>
+                        <li>Разработал серверную часть для трех ключевых проектов под руководством опытного ментора, обеспечив seamless интеграцию с фронтендом.</li>
+                        <li>Создал и настроил базы данных SQLite, реализовав автоматизированные миграции, что сократило время развертывания в 2–3 раза.</li>
+                        <li>Оптимизировал запросы с помощью ORM, минимизировав время разработки на 70% и повысив общую эффективность систем.</li>
+                        <li>Интегрировал RESTful API и gRPC, достигнув увеличения скорости отклика на ~80%, что улучшило пользовательский опыт.</li>
+                        <li>Провел тестирование баз данных и серверной логики, выявил и устранил баги, способствуя стабильности продуктов.</li>
+                        <li>Менторировал стажеров, проводя код-ревью и доработки, способствуя командному росту и качеству проектов.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Связаться со мной</h2>
+            <div class="contact-info">
+                <p><strong>Email:</strong> <a href="mailto:ahmadsho240480@gmail.com">ahmadsho240480@gmail.com</a></p>
+                <p><strong>Telegram:</strong> <a href="https://t.me/DIOADAND">@DIOADAND</a> (предпочитаемый канал связи для оперативного обсуждения)</p>
+                <p><strong>Телефон:</strong> +992 (98) 586-02-07</p>
+                <p style="margin-top:40px; font-size:1.1rem; color:var(--gray);">
+                    Открыт для собеседований, тестовых заданий и сотрудничества. Давайте создадим инновационные решения вместе!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Махмудов Дилшод. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        const toggle = document.querySelector('.theme-toggle');
+        const body = document.body;
+
+        // Установка темы по умолчанию (темная)
+        if (!localStorage.getItem('theme')) {
+            localStorage.setItem('theme', 'dark');
+        }
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.setAttribute('data-theme', 'dark');
+            toggle.textContent = '☀️';
+        } else {
+            body.setAttribute('data-theme', 'light');
+            toggle.textContent = '🌙';
+        }
+
+        toggle.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                toggle.textContent = '🌙';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggle.textContent = '☀️';
+            }
+        });
+    </script>
+</body>
+
+</html>
