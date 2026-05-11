@@ -1,411 +1,891 @@
 <!DOCTYPE html>
-<html lang="ru">
-
+<html lang="ru" data-theme="dark">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Махмудов Дилшод — Backend-разработчик</title>
-    <meta name="description" content="Backend-разработчик с опытом оптимизации серверной логики и API. Ищу возможности для профессионального роста в динамичной команде." />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-         :root {
-            --bg: #0a192f;
-            /* Темный фон для техно-стиля */
-            --text: #ccd6f6;
-            /* Светлый текст */
-            --accent: #64ffda;
-            /* Циан-акцент */
-            --secondary-accent: #00ff85;
-            /* Зеленый акцент */
-            --gray: #8892b0;
-            /* Серый для второстепенного текста */
-            --light-gray: #112240;
-            /* Светлый серый для карточек */
-            --card-shadow: rgba(100, 255, 218, 0.1);
-            /* Тень с оттенком циана */
-        }
-        
-        [data-theme="light"] {
-            --bg: #ffffff;
-            --text: #0a192f;
-            --accent: #00b894;
-            --secondary-accent: #00cec9;
-            --gray: #555555;
-            --light-gray: #f5f5f5;
-            --card-shadow: rgba(0, 184, 148, 0.1);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Montserrat', system-ui, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            transition: background 0.5s ease, color 0.5s ease;
-        }
-        
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-        
-        header {
-            padding: 100px 0 80px;
-            text-align: center;
-            background: linear-gradient(to bottom, var(--light-gray), var(--bg));
-            opacity: 0;
-            transform: translateY(50px);
-            animation: fadeInUp 1s ease forwards;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 16px;
-            color: var(--accent);
-        }
-        
-        .title {
-            font-size: 1.8rem;
-            color: var(--secondary-accent);
-            margin-bottom: 24px;
-        }
-        
-        .bio {
-            max-width: 750px;
-            margin: 0 auto 40px;
-            font-size: 1.2rem;
-            color: var(--gray);
-        }
-        
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--bg);
-            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
-            z-index: 1000;
-            transition: background 0.5s ease, border 0.5s ease;
-        }
-        
-        [data-theme="light"] nav {
-            border-bottom: 1px solid rgba(0, 184, 148, 0.1);
-        }
-        
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 24px;
-        }
-        
-        .logo {
-            font-weight: 600;
-            font-size: 1.4rem;
-            color: var(--accent);
-        }
-        
-        .theme-toggle {
-            background: none;
-            border: none;
-            font-size: 1.6rem;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-        
-        .theme-toggle:hover {
-            transform: scale(1.2);
-        }
-        
-        .nav-links a {
-            margin-left: 32px;
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: var(--accent);
-            transform: translateY(-2px);
-        }
-        
-        section {
-            padding: 100px 0;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: fadeInUp 1s ease forwards 0.3s;
-        }
-        
-        h2 {
-            font-size: 2.8rem;
-            margin-bottom: 48px;
-            text-align: center;
-            position: relative;
-            color: var(--accent);
-        }
-        
-        h2:after {
-            content: '';
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(to right, var(--accent), var(--secondary-accent));
-            position: absolute;
-            bottom: -16px;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: width 0.3s ease;
-        }
-        
-        h2:hover:after {
-            width: 120px;
-        }
-        
-        .skills-grid,
-        .experience-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-        
-        .card {
-            background: var(--light-gray);
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid rgba(100, 255, 218, 0.1);
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.4s ease;
-            opacity: 0;
-            animation: fadeIn 1.2s ease forwards;
-        }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-        
-        .card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 16px 40px var(--card-shadow);
-            border: 1px solid var(--accent);
-        }
-        
-        .card h3 {
-            margin-bottom: 20px;
-            color: var(--secondary-accent);
-            font-size: 1.6rem;
-        }
-        
-        .meta {
-            font-size: 1rem;
-            color: var(--gray);
-            margin-bottom: 16px;
-            font-style: italic;
-        }
-        
-        ul {
-            padding-left: 24px;
-            list-style-type: none;
-        }
-        
-        ul li {
-            margin-bottom: 12px;
-            position: relative;
-        }
-        
-        ul li:before {
-            content: '→';
-            color: var(--accent);
-            position: absolute;
-            left: -24px;
-            transition: color 0.3s ease;
-        }
-        
-        ul li:hover:before {
-            color: var(--secondary-accent);
-        }
-        
-        .contact-info {
-            text-align: center;
-            font-size: 1.3rem;
-        }
-        
-        .contact-info a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .contact-info a:hover {
-            color: var(--secondary-accent);
-            text-decoration: underline;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 50px 0;
-            color: var(--gray);
-            border-top: 1px solid rgba(100, 255, 218, 0.1);
-            transition: border 0.5s ease;
-        }
-        
-        [data-theme="light"] footer {
-            border-top: 1px solid rgba(0, 184, 148, 0.1);
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.8rem;
-            }
-            h2 {
-                font-size: 2.2rem;
-            }
-            nav .container {
-                flex-direction: column;
-                gap: 16px;
-            }
-            .nav-links a {
-                margin: 0 20px;
-            }
-            .card {
-                padding: 32px;
-            }
-        }
-    </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Дилшод Махмудов — Backend Developer</title>
+<meta name="description" content="Backend Developer — Go, gRPC, PostgreSQL, REST API. Душанбе, Таджикистан."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080c14;
+  --surface: #0d1421;
+  --surface2: #111827;
+  --border: rgba(100,255,218,.08);
+  --accent: #64ffda;
+  --accent2: #38bdf8;
+  --accent3: #a78bfa;
+  --text: #ccd6f6;
+  --muted: #4b5a7a;
+  --dim: #8892b0;
+  --glow: rgba(100,255,218,.15);
+}
+[data-theme="light"] {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface2: #f1f5f9;
+  --border: rgba(0,150,120,.12);
+  --accent: #0d9488;
+  --accent2: #0284c7;
+  --accent3: #7c3aed;
+  --text: #0f172a;
+  --muted: #94a3b8;
+  --dim: #64748b;
+  --glow: rgba(13,148,136,.1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body {
+  font-family: 'Syne', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background .4s, color .4s;
+  overflow-x: hidden;
+}
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content:'';
+  position:fixed;inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:.4;
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 32px;
+  display:flex;justify-content:space-between;align-items:center;
+  height:64px;
+  background: rgba(8,12,20,.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: background .4s;
+}
+[data-theme="light"] nav { background: rgba(248,250,252,.88); }
+
+.logo {
+  font-family:'Space Mono', monospace;
+  font-size:.95rem;
+  color: var(--accent);
+  letter-spacing:.04em;
+}
+.logo span { color: var(--dim); }
+
+.nav-right { display:flex;align-items:center;gap:32px; }
+.nav-links { display:flex;gap:28px; }
+.nav-links a {
+  font-size:.8rem;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color: var(--dim);
+  text-decoration:none;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+.theme-btn {
+  background:none;border:1px solid var(--border);
+  color:var(--dim);font-size:.85rem;
+  padding:6px 12px;border-radius:6px;cursor:pointer;
+  transition: all .2s;
+  font-family:'Space Mono',monospace;
+}
+.theme-btn:hover { border-color:var(--accent);color:var(--accent); }
+
+/* ── HERO ── */
+#hero {
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:120px 32px 80px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  max-width:1100px;
+  margin:0 auto;
+  width:100%;
+  align-items:center;
+}
+
+.hero-bg {
+  position:absolute;inset:0;
+  background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(100,255,218,.06) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 40% at 20% 70%, rgba(56,189,248,.04) 0%, transparent 60%);
+  pointer-events:none;
+}
+
+.hero-tag {
+  font-family:'Space Mono',monospace;
+  font-size:.75rem;
+  color:var(--accent);
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  margin-bottom:20px;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-tag::before {
+  content:'';display:block;
+  width:32px;height:1px;background:var(--accent);
+}
+
+.hero-name {
+  font-size:clamp(2.8rem,5vw,4.5rem);
+  font-weight:800;
+  line-height:1.05;
+  margin-bottom:16px;
+  background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+.hero-role {
+  font-size:1.1rem;
+  color:var(--accent2);
+  font-weight:500;
+  margin-bottom:24px;
+}
+
+.hero-bio {
+  font-size:.95rem;
+  color:var(--dim);
+  line-height:1.8;
+  max-width:480px;
+  margin-bottom:40px;
+}
+
+.hero-cta {
+  display:flex;gap:16px;flex-wrap:wrap;
+}
+.btn-primary {
+  padding:12px 28px;
+  background:var(--accent);
+  color:#080c14;
+  border:none;border-radius:6px;
+  font-family:'Syne',sans-serif;
+  font-size:.875rem;font-weight:700;
+  text-decoration:none;cursor:pointer;
+  transition: transform .2s, box-shadow .2s;
+  letter-spacing:.04em;
+}
+.btn-primary:hover { transform:translateY(-2px);box-shadow:0 8px 24px var(--glow); }
+
+.btn-ghost {
+  padding:12px 28px;
+  background:transparent;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  border-radius:6px;
+  font-family:'Syne',sans-serif;
+  font-size:.875rem;font-weight:600;
+  text-decoration:none;cursor:pointer;
+  transition: all .2s;
+  letter-spacing:.04em;
+}
+.btn-ghost:hover { background:rgba(100,255,218,.07); }
+
+/* Hero right — terminal card */
+.hero-terminal {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 32px 64px rgba(0,0,0,.4), 0 0 0 1px var(--border);
+}
+.terminal-bar {
+  background:var(--surface2);
+  padding:12px 16px;
+  display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid var(--border);
+}
+.dot { width:10px;height:10px;border-radius:50%; }
+.dot-r{background:#ff5f57}.dot-y{background:#ffbd2e}.dot-g{background:#28ca41}
+.terminal-title {
+  margin-left:8px;
+  font-family:'Space Mono',monospace;
+  font-size:.7rem;color:var(--muted);
+}
+.terminal-body {
+  padding:24px;
+  font-family:'Space Mono',monospace;
+  font-size:.8rem;
+  line-height:2;
+}
+.t-prompt { color:var(--accent); }
+.t-cmd { color:var(--text); }
+.t-out { color:var(--dim);padding-left:16px; }
+.t-key { color:var(--accent2); }
+.t-val { color:var(--accent3); }
+.t-str { color:#86efac; }
+.cursor {
+  display:inline-block;width:8px;height:14px;
+  background:var(--accent);
+  animation: blink 1.1s step-end infinite;
+  vertical-align:middle;margin-left:2px;
+}
+@keyframes blink { 50%{opacity:0} }
+
+/* ── SECTIONS ── */
+.section {
+  padding:100px 32px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.section-full {
+  padding:100px 0;
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.section-full .section { padding-top:0;padding-bottom:0; }
+
+.section-label {
+  font-family:'Space Mono',monospace;
+  font-size:.7rem;
+  color:var(--accent);
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin-bottom:12px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-label::after { content:'';flex:1;height:1px;background:var(--border); }
+
+h2.section-title {
+  font-size:clamp(1.8rem,3vw,2.8rem);
+  font-weight:800;
+  margin-bottom:56px;
+  color:var(--text);
+}
+
+/* ── SKILLS ── */
+.skills-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
+}
+.skill-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:32px;
+  position:relative;
+  overflow:hidden;
+  transition: border-color .3s, transform .3s, box-shadow .3s;
+}
+.skill-card::before {
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s;
+}
+.skill-card:hover::before { transform:scaleX(1); }
+.skill-card:hover {
+  border-color:rgba(100,255,218,.25);
+  transform:translateY(-4px);
+  box-shadow:0 16px 40px rgba(0,0,0,.3);
+}
+.skill-icon {
+  font-size:1.8rem;margin-bottom:16px;
+}
+.skill-card h3 {
+  font-size:1rem;font-weight:700;
+  color:var(--text);margin-bottom:10px;
+}
+.skill-card p { font-size:.875rem;color:var(--dim);line-height:1.7; }
+
+.tag-list { display:flex;flex-wrap:wrap;gap:8px;margin-top:16px; }
+.tag {
+  font-family:'Space Mono',monospace;
+  font-size:.65rem;
+  padding:4px 10px;
+  border-radius:4px;
+  background:rgba(100,255,218,.07);
+  color:var(--accent);
+  border:1px solid rgba(100,255,218,.15);
+  letter-spacing:.06em;
+}
+
+/* ── EXPERIENCE ── */
+.exp-list { display:flex;flex-direction:column;gap:32px; }
+.exp-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:36px;
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:40px;
+  transition:border-color .3s;
+}
+.exp-card:hover { border-color:rgba(100,255,218,.2); }
+.exp-meta { }
+.exp-period {
+  font-family:'Space Mono',monospace;
+  font-size:.72rem;
+  color:var(--accent);
+  margin-bottom:8px;
+  letter-spacing:.06em;
+}
+.exp-company {
+  font-size:1rem;font-weight:700;
+  color:var(--text);margin-bottom:4px;
+}
+.exp-loc {
+  font-size:.8rem;color:var(--dim);
+}
+.exp-role {
+  font-size:1.1rem;font-weight:700;
+  color:var(--text);margin-bottom:6px;
+}
+.exp-type {
+  font-size:.78rem;color:var(--accent2);
+  margin-bottom:20px;
+  font-weight:600;
+}
+.exp-bullets { list-style:none;display:flex;flex-direction:column;gap:10px; }
+.exp-bullets li {
+  font-size:.875rem;color:var(--dim);line-height:1.7;
+  display:flex;gap:12px;
+}
+.exp-bullets li::before {
+  content:'▸';color:var(--accent);flex-shrink:0;margin-top:1px;
+}
+
+/* ── LEADERSHIP ── */
+.leadership-card {
+  background: linear-gradient(135deg, rgba(100,255,218,.05) 0%, rgba(167,139,250,.05) 100%);
+  border:1px solid rgba(100,255,218,.15);
+  border-radius:12px;
+  padding:40px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  align-items:center;
+}
+.leadership-badge {
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(167,139,250,.1);
+  border:1px solid rgba(167,139,250,.25);
+  border-radius:20px;
+  padding:6px 14px;
+  font-size:.72rem;font-weight:700;
+  color:var(--accent3);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:20px;
+}
+.leadership-card h3 {
+  font-size:1.5rem;font-weight:800;
+  color:var(--text);margin-bottom:8px;
+}
+.leadership-card .sub {
+  font-size:.875rem;color:var(--accent2);
+  font-weight:600;margin-bottom:20px;
+}
+.leadership-card p { font-size:.875rem;color:var(--dim);line-height:1.8; }
+
+.stats-grid {
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;
+}
+.stat-box {
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:24px;
+  text-align:center;
+}
+.stat-num {
+  font-family:'Space Mono',monospace;
+  font-size:1.8rem;font-weight:700;
+  color:var(--accent);
+  margin-bottom:6px;
+}
+.stat-label { font-size:.75rem;color:var(--dim);line-height:1.4; }
+
+/* ── PROJECTS ── */
+.proj-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:24px;
+}
+.proj-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:32px;
+  transition: border-color .3s, transform .3s;
+  display:flex;flex-direction:column;
+}
+.proj-card:hover { border-color:rgba(100,255,218,.25);transform:translateY(-4px); }
+.proj-top { display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px; }
+.proj-icon { font-size:1.4rem; }
+.proj-link {
+  color:var(--dim);text-decoration:none;font-size:.8rem;
+  font-family:'Space Mono',monospace;
+  transition:color .2s;
+  display:flex;align-items:center;gap:6px;
+}
+.proj-link:hover { color:var(--accent); }
+.proj-card h3 { font-size:1rem;font-weight:700;color:var(--text);margin-bottom:10px; }
+.proj-card p { font-size:.875rem;color:var(--dim);line-height:1.7;flex:1; }
+
+/* ── EDUCATION ── */
+.edu-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:36px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:32px;
+}
+.edu-degree { font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:6px; }
+.edu-school { font-size:.9rem;color:var(--accent2);font-weight:600;margin-bottom:8px; }
+.edu-detail { font-size:.85rem;color:var(--dim); }
+.edu-year {
+  font-family:'Space Mono',monospace;
+  font-size:.8rem;color:var(--accent);
+  white-space:nowrap;
+  text-align:right;
+}
+
+/* ── LANGUAGES ── */
+.lang-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:20px; }
+.lang-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:28px;
+  text-align:center;
+  transition:border-color .3s;
+}
+.lang-card:hover { border-color:rgba(100,255,218,.2); }
+.lang-name { font-size:1rem;font-weight:700;color:var(--text);margin-bottom:6px; }
+.lang-level {
+  font-family:'Space Mono',monospace;
+  font-size:.72rem;color:var(--accent);
+  letter-spacing:.08em;margin-bottom:14px;
+}
+.lang-bar { height:3px;background:var(--border);border-radius:2px;overflow:hidden; }
+.lang-fill { height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px; }
+
+/* ── CONTACT ── */
+.contact-grid {
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+}
+.contact-left h3 { font-size:1.8rem;font-weight:800;color:var(--text);margin-bottom:16px; }
+.contact-left p { font-size:.925rem;color:var(--dim);line-height:1.8;margin-bottom:32px; }
+.contact-links { display:flex;flex-direction:column;gap:16px; }
+.contact-item {
+  display:flex;align-items:center;gap:16px;
+  padding:18px 24px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  text-decoration:none;
+  transition:border-color .2s,transform .2s;
+}
+.contact-item:hover { border-color:var(--accent);transform:translateX(4px); }
+.contact-item-icon { font-size:1.1rem;flex-shrink:0; }
+.contact-item-text { }
+.contact-item-label { font-size:.7rem;color:var(--dim);font-weight:600;letter-spacing:.08em;text-transform:uppercase; }
+.contact-item-value { font-size:.9rem;color:var(--text);font-family:'Space Mono',monospace; }
+
+.contact-right {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:40px;
+  text-align:center;
+}
+.available-dot {
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.78rem;color:var(--accent);
+  font-weight:600;letter-spacing:.06em;
+  margin-bottom:24px;
+}
+.dot-pulse {
+  width:8px;height:8px;border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 0 0 var(--glow);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse {
+  0%{box-shadow:0 0 0 0 rgba(100,255,218,.4)}
+  70%{box-shadow:0 0 0 10px rgba(100,255,218,0)}
+  100%{box-shadow:0 0 0 0 rgba(100,255,218,0)}
+}
+.contact-right h4 { font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:12px; }
+.contact-right p { font-size:.875rem;color:var(--dim);line-height:1.7;margin-bottom:32px; }
+.pref-list { list-style:none;display:flex;flex-direction:column;gap:10px;text-align:left; }
+.pref-list li {
+  font-size:.85rem;color:var(--dim);
+  display:flex;gap:10px;align-items:flex-start;
+}
+.pref-list li::before { content:'✓';color:var(--accent);flex-shrink:0;font-weight:700; }
+
+/* ── FOOTER ── */
+footer {
+  padding:40px 32px;
+  text-align:center;
+  border-top:1px solid var(--border);
+  font-family:'Space Mono',monospace;
+  font-size:.72rem;
+  color:var(--muted);
+  letter-spacing:.06em;
+}
+
+/* ── ANIMATIONS ── */
+.fade-in {
+  opacity:0;transform:translateY(24px);
+  transition:opacity .6s ease, transform .6s ease;
+}
+.fade-in.visible { opacity:1;transform:translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-grid { grid-template-columns:1fr; }
+  .hero-terminal { display:none; }
+  .exp-card { grid-template-columns:1fr; gap:16px; }
+  .leadership-card { grid-template-columns:1fr; }
+  .contact-grid { grid-template-columns:1fr; }
+  .lang-grid { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:600px){
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .section { padding:60px 20px; }
+  .lang-grid { grid-template-columns:1fr; }
+  .edu-card { flex-direction:column; }
+}
+</style>
 </head>
+<body>
 
-<body data-theme="dark">
+<nav>
+  <div class="logo">DM<span>.dev</span></div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#skills">Навыки</a>
+      <a href="#experience">Опыт</a>
+      <a href="#projects">Проекты</a>
+      <a href="#contact">Контакт</a>
+    </div>
+    <button class="theme-btn" id="themeBtn">☀️ Тема</button>
+  </div>
+</nav>
 
-    <nav>
-        <div class="container">
-            <div class="logo">Дилшод Махмудов</div>
-            <div>
-                <button class="theme-toggle" aria-label="Переключить тему">☀️</button>
-            </div>
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-tag">Backend Developer · Душанбе, Таджикистан</div>
+      <h1 class="hero-name">Дилшод Махмудов</h1>
+      <div class="hero-role">Go · gRPC · PostgreSQL · REST API</div>
+      <p class="hero-bio">
+        Амбициозный backend-разработчик с практическим опытом production-разработки в телекоме.
+        Строю надёжные серверные системы, пишу чистый код и умею работать в команде.
+        Ищу part-time или удалённую позицию с возможностью роста.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Связаться</a>
+        <a href="#experience" class="btn-ghost">Мой опыт</a>
+      </div>
+    </div>
+
+    <div class="hero-terminal">
+      <div class="terminal-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="terminal-title">dilshod@dev ~ profile.json</span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="t-prompt">$ </span><span class="t-cmd">cat profile.json</span></div>
+        <div class="t-out">{</div>
+        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"name"</span>: <span class="t-str">"Dilshod Mahmudov"</span>,</div>
+        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"role"</span>: <span class="t-str">"Backend Developer"</span>,</div>
+        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"stack"</span>: [</div>
+        <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"Go/Gin"</span>, <span class="t-str">"gRPC"</span>,</div>
+        <div class="t-out">&nbsp;&nbsp;&nbsp;&nbsp;<span class="t-str">"PostgreSQL"</span>, <span class="t-str">"REST API"</span></div>
+        <div class="t-out">&nbsp;&nbsp;],</div>
+        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"format"</span>: <span class="t-str">"part-time / remote"</span>,</div>
+        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"status"</span>: <span class="t-val">open_to_work</span>,</div>
+        <div class="t-out">&nbsp;&nbsp;<span class="t-key">"location"</span>: <span class="t-str">"Dushanbe, TJ"</span></div>
+        <div class="t-out">}</div>
+        <div><span class="t-prompt">$ </span><span class="cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<div class="section-full">
+<div class="section" id="skills">
+  <div class="section-label">01 &nbsp; Компетенции</div>
+  <h2 class="section-title">Ключевые навыки</h2>
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <div class="skill-icon">⚙️</div>
+      <h3>Backend-разработка</h3>
+      <p>Проектирование и реализация серверной логики: RESTful API, gRPC-микросервисы, JWT-аутентификация, чистая архитектура.</p>
+      <div class="tag-list">
+        <span class="tag">Go/Gin</span><span class="tag">gRPC</span><span class="tag">Protobuf</span><span class="tag">JWT</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🗄️</div>
+      <h3>Базы данных</h3>
+      <p>Проектирование схем БД, оптимизация запросов, ORM-слой, автоматизация миграций. Сокращение времени разработки запросов на 70%.</p>
+      <div class="tag-list">
+        <span class="tag">PostgreSQL</span><span class="tag">SQLite</span><span class="tag">GORM</span><span class="tag">SQL</span><span class="tag">MySQL</span><span class="tag">MSSQL</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🧪</div>
+      <h3>Тестирование и QA</h3>
+      <p>API-тестирование через Postman, составление баг-репортов и тест-кейсов, итеративная отладка. 3–4 тест-цикла на каждый проект.</p>
+      <div class="tag-list">
+        <span class="tag">Postman</span><span class="tag">REST Testing</span><span class="tag">Bug Reports</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🛠️</div>
+      <h3>Инструменты и среды</h3>
+      <p>Командная разработка с Git, работа в Linux-окружении, документирование API. Параллельная учёба по прикладной математике и CS.</p>
+      <div class="tag-list">
+        <span class="tag">Git</span><span class="tag">VS Code</span><span class="tag">C++</span><span class="tag">Python</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── EXPERIENCE ── -->
+<div class="section" id="experience">
+  <div class="section-label">02 &nbsp; Опыт работы</div>
+  <h2 class="section-title">Профессиональный опыт</h2>
+  <div class="exp-list">
+
+    <div class="exp-card fade-in">
+      <div class="exp-meta">
+        <div class="exp-period">МАЙ — ОКТ 2025</div>
+        <div class="exp-company">Tcell</div>
+        <div class="exp-loc">Душанбе, Таджикистан</div>
+      </div>
+      <div>
+        <div class="exp-role">Backend Developer Intern</div>
+        <div class="exp-type">Программа наставничества · Стажировка</div>
+        <ul class="exp-bullets">
+          <li>Разработал серверную часть для 3 production-проектов под руководством старших инженеров — все этапы выполнены в срок.</li>
+          <li>Спроектировал и поддерживал схемы БД в SQLite и PostgreSQL; оптимизировал запросы через GORM — время разработки запросов сократилось на 70%.</li>
+          <li>Интегрировал RESTful API и gRPC-эндпоинты с соблюдением принципов ООП и чистой архитектуры — скорость отклика выросла на ~80%.</li>
+          <li>Автоматизировал процессы миграции БД, сократив время развёртывания в 2–3 раза.</li>
+          <li>Проводил по 3–4 итерации тестирования и баг-фиксинга на каждый проект.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- LEADERSHIP -->
+    <div class="fade-in" style="margin-top:8px;">
+      <div class="section-label" style="margin-bottom:24px;">Лидерство и организация</div>
+      <div class="leadership-card">
+        <div>
+          <div class="leadership-badge">🎓 Студенческий совет</div>
+          <h3>Руководитель сектора СМИ</h3>
+          <div class="sub">Филиал МГУ, Душанбе · 2024 — наст. время</div>
+          <p>
+            Возглавляю медиа-направление студенческого совета: организую информационное освещение университетских мероприятий,
+            координирую команду, планирую контент и слежу за качеством публикаций.
+            Роль совмещает функции проджект-менеджера и продуктового менеджера — от постановки задач до финального результата.
+          </p>
         </div>
-    </nav>
-
-    <header>
-        <div class="container">
-            <!-- Замените на ссылку на ваше фото, например: https://i.imgur.com/ваш-id.jpg -->
-            <!-- <img src="your-photo.jpg" alt="Дилшод Махмудов" style="width:200px; height:200px; border-radius:50%; object-fit:cover; margin-bottom:32px; border:4px solid var(--accent); transition: border 0.3s ease;"> -->
-            <h1>Махмудов Дилшод</h1>
-            <div class="title">Backend-разработчик с фокусом на оптимизации и инновациях</div>
-            <p class="bio">
-                Амбициозный специалист в области backend-разработки, 19 лет. Обладаю практическим опытом в создании эффективных серверных решений, оптимизации баз данных и интеграции API. Стремлюсь к ролям, где могу внести вклад в проекты с использованием современных
-                технологий, демонстрируя навыки менторства и быструю адаптацию. Ищу позицию в инновационной команде с возможностью удаленной работы или гибкого графика для достижения выдающихся результатов.
-            </p>
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-num">PM</div>
+            <div class="stat-label">Управление проектами и командой</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">СМИ</div>
+            <div class="stat-label">Медиа-стратегия и контент</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">🎯</div>
+            <div class="stat-label">Планирование и координация</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">👥</div>
+            <div class="stat-label">Лидерство в команде</div>
+          </div>
         </div>
-    </header>
+      </div>
+    </div>
 
-    <section id="skills">
-        <div class="container">
-            <h2>Ключевые навыки и компетенции</h2>
-            <div class="skills-grid">
-                <div class="card">
-                    <h3>Backend-разработка</h3>
-                    <p>Проектирование и реализация масштабируемой серверной логики, включая разработку RESTful API и gRPC для высокопроизводительных систем.</p>
-                </div>
-                <div class="card">
-                    <h3>Работа с базами данных</h3>
-                    <p>Экспертиза в SQLite: создание, миграция и оптимизация баз данных с использованием ORM, что позволило сократить время запросов на 70% и миграций в 2–3 раза.</p>
-                </div>
-                <div class="card">
-                    <h3>Тестирование и отладка</h3>
-                    <p>Комплексное тестирование серверной части, интеграция и устранение ошибок, обеспечивая повышение скорости отклика систем до 80%.</p>
-                </div>
-                <div class="card">
-                    <h3>Лидерство и сотрудничество</h3>
-                    <p>Менторство стажеров, автоматизация процессов и командная работа в динамичных проектах с фокусом на результат и инновации.</p>
-                </div>
-            </div>
+  </div>
+</div>
+
+<!-- ── PROJECTS ── -->
+<div class="section-full">
+<div class="section" id="projects">
+  <div class="section-label">03 &nbsp; Проекты</div>
+  <h2 class="section-title">Личные проекты</h2>
+  <div class="proj-grid">
+    <div class="proj-card fade-in">
+      <div class="proj-top">
+        <div class="proj-icon">📔</div>
+        <a href="https://github.com/Human-Unit/Journal-Diary" class="proj-link" target="_blank">github ↗</a>
+      </div>
+      <h3>Journal-Diary</h3>
+      <p>Полнофункциональный бэкенд приложения-дневника на Go/Gin. JWT-аутентификация через gRPC, CRUD-операции с SQLite/GORM, микросервисная архитектура.</p>
+      <div class="tag-list" style="margin-top:auto;padding-top:16px;">
+        <span class="tag">Go</span><span class="tag">gRPC</span><span class="tag">SQLite</span><span class="tag">JWT</span><span class="tag">GORM</span>
+      </div>
+    </div>
+    <div class="proj-card fade-in">
+      <div class="proj-top">
+        <div class="proj-icon">🎓</div>
+        <span class="proj-link" style="color:var(--muted)">Учебные проекты</span>
+      </div>
+      <h3>Десктопные приложения с БД</h3>
+      <p>Разработка desktop-приложений в рамках университетского курса: интеграция с MySQL/MSSQL, реализация бизнес-логики на C++ и Python.</p>
+      <div class="tag-list" style="margin-top:auto;padding-top:16px;">
+        <span class="tag">C++</span><span class="tag">Python</span><span class="tag">MySQL</span><span class="tag">MSSQL</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── EDUCATION ── -->
+<div class="section" id="education">
+  <div class="section-label">04 &nbsp; Образование</div>
+  <h2 class="section-title">Образование</h2>
+  <div class="edu-card fade-in">
+    <div>
+      <div class="edu-degree">Бакалавриат — Прикладная математика и информатика</div>
+      <div class="edu-school">Филиал МГУ, Душанбе</div>
+      <div class="edu-detail">2-й курс &nbsp;·&nbsp; C++, Python, SQL, десктопная разработка, матанализ, линейная алгебра</div>
+    </div>
+    <div class="edu-year">
+      2024 — 2028<br/>
+      <span style="color:var(--dim);font-size:.65rem;">Ожидаемый год окончания</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── LANGUAGES ── -->
+<div class="section-full">
+<div class="section">
+  <div class="section-label">05 &nbsp; Языки</div>
+  <h2 class="section-title">Владение языками</h2>
+  <div class="lang-grid">
+    <div class="lang-card fade-in">
+      <div class="lang-name">Русский</div>
+      <div class="lang-level">РОДНОЙ</div>
+      <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+    </div>
+    <div class="lang-card fade-in">
+      <div class="lang-name">Таджикский</div>
+      <div class="lang-level">C1 · ADVANCED</div>
+      <div class="lang-bar"><div class="lang-fill" style="width:90%"></div></div>
+    </div>
+    <div class="lang-card fade-in">
+      <div class="lang-name">Английский</div>
+      <div class="lang-level">B2 · UPPER-INTERMEDIATE</div>
+      <div class="lang-bar"><div class="lang-fill" style="width:70%"></div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── CONTACT ── -->
+<div class="section" id="contact">
+  <div class="section-label">06 &nbsp; Контакт</div>
+  <h2 class="section-title">Связаться со мной</h2>
+  <div class="contact-grid">
+    <div class="contact-left">
+      <h3>Открыт к предложениям</h3>
+      <p>Рассматриваю part-time и удалённые позиции в области backend-разработки, QA или смежных направлениях. Готов к техническому интервью и тестовому заданию.</p>
+      <div class="contact-links">
+        <a href="mailto:ahmadsho240480@gmail.com" class="contact-item">
+          <span class="contact-item-icon">📧</span>
+          <div class="contact-item-text">
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">ahmadsho240480@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://t.me/DIOADAND" class="contact-item" target="_blank">
+          <span class="contact-item-icon">✈️</span>
+          <div class="contact-item-text">
+            <div class="contact-item-label">Telegram (предпочтительно)</div>
+            <div class="contact-item-value">@DIOADAND</div>
+          </div>
+        </a>
+        <a href="https://github.com/Human-Unit" class="contact-item" target="_blank">
+          <span class="contact-item-icon">💻</span>
+          <div class="contact-item-text">
+            <div class="contact-item-label">GitHub</div>
+            <div class="contact-item-value">github.com/Human-Unit</div>
+          </div>
+        </a>
+        <div class="contact-item" style="cursor:default;">
+          <span class="contact-item-icon">📞</span>
+          <div class="contact-item-text">
+            <div class="contact-item-label">Телефон</div>
+            <div class="contact-item-value">+992 98 586-02-07</div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+    <div class="contact-right">
+      <div class="available-dot"><span class="dot-pulse"></span>Открыт к предложениям</div>
+      <h4>Предпочтительный формат</h4>
+      <p>Студент 2-го курса — совмещение с учёбой в приоритете.</p>
+      <ul class="pref-list">
+        <li>Part-time или гибкий график</li>
+        <li>Удалённая работа</li>
+        <li>Backend: Go, SQL, API</li>
+        <li>Готов обсуждать другие форматы</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-    <section id="experience" style="background: var(--light-gray);">
-        <div class="container">
-            <h2>Профессиональный опыт</h2>
-            <div class="experience-grid">
-                <div class="card">
-                    <h3>Tcell (Телекоммуникации, связь)</h3>
-                    <div class="meta">Май 2025 — январь 2026 (7 месяцев) | Ментор-разработчик / Стажировка</div>
-                    <ul>
-                        <li>Разработал серверную часть для трех ключевых проектов под руководством опытного ментора, обеспечив seamless интеграцию с фронтендом.</li>
-                        <li>Создал и настроил базы данных SQLite, реализовав автоматизированные миграции, что сократило время развертывания в 2–3 раза.</li>
-                        <li>Оптимизировал запросы с помощью ORM, минимизировав время разработки на 70% и повысив общую эффективность систем.</li>
-                        <li>Интегрировал RESTful API и gRPC, достигнув увеличения скорости отклика на ~80%, что улучшило пользовательский опыт.</li>
-                        <li>Провел тестирование баз данных и серверной логики, выявил и устранил баги, способствуя стабильности продуктов.</li>
-                        <li>Менторировал стажеров, проводя код-ревью и доработки, способствуя командному росту и качеству проектов.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer>
+  <p>© 2026 Дилшод Махмудов &nbsp;·&nbsp; Душанбе, Таджикистан &nbsp;·&nbsp; Built with intention</p>
+</footer>
 
-    <section id="contact">
-        <div class="container">
-            <h2>Связаться со мной</h2>
-            <div class="contact-info">
-                <p><strong>Email:</strong> <a href="mailto:ahmadsho240480@gmail.com">ahmadsho240480@gmail.com</a></p>
-                <p><strong>Telegram:</strong> <a href="https://t.me/DIOADAND">@DIOADAND</a> (предпочитаемый канал связи для оперативного обсуждения)</p>
-                <p><strong>Телефон:</strong> +992 (98) 586-02-07</p>
-                <p style="margin-top:40px; font-size:1.1rem; color:var(--gray);">
-                    Открыт для собеседований, тестовых заданий и сотрудничества. Давайте создадим инновационные решения вместе!
-                </p>
-            </div>
-        </div>
-    </section>
+<script>
+// Theme toggle
+const btn = document.getElementById('themeBtn');
+const root = document.documentElement;
+const saved = localStorage.getItem('theme') || 'dark';
+root.setAttribute('data-theme', saved);
+btn.textContent = saved === 'dark' ? '☀️ Тема' : '🌙 Тема';
 
-    <footer>
-        <div class="container">
-            <p>© 2026 Махмудов Дилшод. Все права защищены.</p>
-        </div>
-    </footer>
+btn.addEventListener('click', () => {
+  const cur = root.getAttribute('data-theme');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  btn.textContent = next === 'dark' ? '☀️ Тема' : '🌙 Тема';
+});
 
-    <script>
-        const toggle = document.querySelector('.theme-toggle');
-        const body = document.body;
-
-        // Установка темы по умолчанию (темная)
-        if (!localStorage.getItem('theme')) {
-            localStorage.setItem('theme', 'dark');
-        }
-
-        if (localStorage.getItem('theme') === 'dark') {
-            body.setAttribute('data-theme', 'dark');
-            toggle.textContent = '☀️';
-        } else {
-            body.setAttribute('data-theme', 'light');
-            toggle.textContent = '🌙';
-        }
-
-        toggle.addEventListener('click', () => {
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-                toggle.textContent = '🌙';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                toggle.textContent = '☀️';
-            }
-        });
-    </script>
+// Scroll fade-in
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
 </body>
-
 </html>
